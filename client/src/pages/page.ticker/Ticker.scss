@@ -1,0 +1,36 @@
+.ticker {
+  &__name {
+    font-size: 4rem;
+  }
+
+  .tabs {
+
+    &__list {
+      height: 64px;
+      display: flex;
+      gap: 8px;
+
+      .tab {
+        flex: 1 1 0;
+        cursor: pointer;
+        background: #6b1f1f;
+        color: #f0ffff;
+        padding: 10px 20px;
+        overflow: hidden;
+        border-radius: 10px 10px 0 0;
+      }
+
+      .tab--active {
+        background: #a3a3ff;
+        color: inherit;
+      }
+
+    }
+
+    &__chart {
+      font-size: 3rem;
+      background: #a3a3ff;
+      height: 600px;
+    }
+  }
+}

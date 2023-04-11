@@ -1,0 +1,158 @@
+.mainPage {
+  padding-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+
+  &__search {
+    width: 50%;
+
+    form {
+      position: relative;
+      overflow: hidden;
+      box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+      padding: 5px;
+      background: #eceafd;
+      display: flex;
+      gap: 5px;
+
+      input,
+      button {
+        height: 40px;
+        font-size: 1.2rem;
+        font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      }
+
+      input {
+        background: #eceafd;
+        width: 80%;
+        padding-left: 20px;
+        border-bottom: 2px solid rgba(128, 128, 128, 0.644);
+      }
+
+      button {
+        width: 20%;
+        appearance: none;
+        background-color: #FAFBFC;
+        border: 1px solid rgba(27, 31, 35, 0.15);
+        box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+        color: #24292E;
+        display: inline-block;
+
+        font-weight: 500;
+        list-style: none;
+        padding: 6px 16px;
+        position: relative;
+        transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+        white-space: nowrap;
+        word-wrap: break-word;
+
+        &:hover {
+          background-color: #F3F4F6;
+          text-decoration: none;
+          transition-duration: 0.1s;
+        }
+
+        &:disabled {
+          background-color: #FAFBFC;
+          border-color: rgba(27, 31, 35, 0.15);
+          color: #959DA5;
+          cursor: default;
+        }
+
+        &:active {
+          background-color: #EDEFF2;
+          box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+          transition: none 0s;
+        }
+      }
+    }
+  }
+
+  &__tickersList {
+    // background: wheat;
+    width: 100%;
+
+    .tickersList {
+      display: flex;
+      flex-direction: column;
+
+      &__item {
+        border-bottom: 1px solid #97979780;
+        font-size: 1.2rem;
+        padding: 0 10px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr) 1.5fr 50px;
+        grid-template-rows: 50px;
+        grid-auto-rows: 1fr;
+        gap: 20px 10px;
+        grid-auto-flow: row;
+        align-items: center;
+        justify-items: start;
+        grid-template-areas:
+          "ticker exchange price change changePercent date pin";
+
+
+        .ticker {
+          grid-area: ticker;
+          width: 100px;
+          font-weight: 500;
+          background: #7970f3;
+          padding: 6px 12px;
+          border-radius: 0.4rem;
+        }
+
+        .exchange {
+          grid-area: exchange;
+        }
+
+        .price {
+          grid-area: price;
+        }
+
+        .change {
+          grid-area: change;
+          width: 100px;
+          padding: 6px 12px;
+          display: flex;
+          gap: 5px;
+          align-items: center;
+          justify-content: center;
+          background: #B3B492;
+          border-radius: 0.4rem;
+
+          img {
+            width: 24px;
+            aspect-ratio: 1/1;
+            filter: invert(39%) sepia(99%) saturate(910%) hue-rotate(85deg) brightness(95%) contrast(97%);
+            // filter: invert(37%) sepia(76%) saturate(5433%) hue-rotate(347deg) brightness(97%) contrast(89%);
+          }
+        }
+
+        .changePercent {
+          grid-area: changePercent;
+        }
+
+        .date {
+          grid-area: date;
+        }
+
+        .pin {
+          grid-area: pin;
+          width: 24px;
+          aspect-ratio: 1 / 1;
+          background: inherit;
+        }
+      }
+
+      :last-child {
+        border: none;
+      }
+    }
+  }
+}

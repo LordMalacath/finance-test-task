@@ -1,0 +1,114 @@
+.header {
+  position: fixed;
+  background-color: #ffaa00;
+  background-image: url("../../img/liquid-cheese.svg");
+  background-attachment: fixed;
+  top: 0;
+  background-size: cover;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    color: inherit;
+    flex: 2;
+    height: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    img {
+      max-height: 50%;
+    }
+
+    span {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    &:active {
+      color: #a1a1a1;
+
+      img {
+        filter: invert(74%) sepia(6%) saturate(9%) hue-rotate(323deg) brightness(88%) contrast(84%);
+      }
+    }
+  }
+
+  &__nav {
+    flex: 8;
+
+    .pinnedTickers {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+
+      &__item {
+        position: relative;
+        color: inherit;
+        max-width: 160px;
+        font-size: 1.3rem;
+        font-weight: 500;
+        background: #80A1C1;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        padding: 10px 12px;
+        border-radius: 0.8rem;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-areas:
+          "trending name"
+          "trending price";
+        justify-content: center;
+
+        .trending {
+          grid-area: trending;
+          height: 40px;
+          aspect-ratio: 1 / 1;
+        }
+
+        .name {
+          grid-area: name;
+        }
+
+        .price {
+          grid-area: price;
+        }
+
+        &:hover .item__delete {
+          display: block;
+        }
+
+        .item__delete {
+          display: none;
+          height: 20px;
+          aspect-ratio: 1 / 1;
+          align-items: center;
+          text-align: center;
+          border-radius: 50%;
+          position: absolute;
+          top: -10px;
+          right: -10px;
+          cursor: pointer;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+
+          img {
+            max-height: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  &__user {
+    //freespace for adding login/user button
+    flex: 2;
+  }
+}

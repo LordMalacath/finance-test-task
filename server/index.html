@@ -16,6 +16,7 @@
             socket.emit('start');
             socket.on('ticker', function(response) {
                 const res = Array.isArray(response) ? response : [response];
+                console.log(res)
                 const json = res.map(item => JSON.stringify(item)).join('\n');
                 const data = $(`<pre>${json}</pre><hr />`);
                 $('#quotes').append(data);
