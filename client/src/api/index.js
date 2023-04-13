@@ -1,6 +1,7 @@
 import { io } from 'socket.io-client';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { setData } from 'redux/slices/tickerData';
+import { setData } from 'redux/slices/tickerSlice';
+
 
 
 export const tickerApi = createApi({
@@ -20,7 +21,6 @@ export const tickerApi = createApi({
         socket.emit('start');
         socket.on('ticker', function (response) {
           const res = Array.isArray(response) ? response : [response];
-          console.log(res);
           updateCachedData((currentCachedData) => { currentCachedData = res })
           dispatch(setData(res));
         });

@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { tickerApi } from "api";
-import tickerReducer from "redux/slices/tickerData";
+import tickerReducer from "redux/slices/tickerSlice";
+import appReducer from "redux/slices/appSlice";
 import storage from "redux-persist/lib/storage";
 import {
   persistStore,
@@ -13,14 +14,17 @@ import {
   REGISTER,
 } from 'redux-persist';
 
+
+
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['tickerData'],
+  whitelist: ['app'],
 };
 
 const rootReducer = combineReducers({
   tickerData: tickerReducer,
+  app: appReducer,
   [tickerApi.reducerPath]: tickerApi.reducer,
 });
 

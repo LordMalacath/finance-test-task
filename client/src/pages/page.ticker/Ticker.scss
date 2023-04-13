@@ -1,12 +1,14 @@
 .ticker {
+  padding-top: 32px;
   &__name {
     font-size: 4rem;
   }
 
   .tabs {
+    margin-top: 32px;
 
     &__list {
-      height: 64px;
+      height: 32px;
       display: flex;
       gap: 8px;
 
@@ -28,7 +30,6 @@
     }
 
     &__chart {
-      font-size: 3rem;
       background: #a3a3ff;
       height: 600px;
     }

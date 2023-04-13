@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import PinnedTicker from "./components/PinnedTicker/PinnedTicker";
 import "./Header.scss";
+import _ from "lodash";
 
 export default function Header() {
-  const { data } = useSelector(store => store.tickerData);
+  const { pinnedTickers } = useSelector(state => state.app);
 
   return (
     <div className="header">
@@ -18,7 +19,10 @@ export default function Header() {
       <div className="header__nav">
         <div className="pinnedTickers">
           {/* track pinned tickers: add querry auto pin/unpin set */}
-          {data.map(item => !item.pin ? <PinnedTicker data={item} key={item.ticker} /> : <></>)}
+          {
+            pinnedTickers.length > 0 &&
+            pinnedTickers.map(item => <PinnedTicker ticker={item} key={item} />)
+          }
         </div>
       </div>
       <div className="header__user"></div>

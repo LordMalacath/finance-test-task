@@ -1,31 +1,36 @@
 import deleteIcon from "img/minus_icon.png";
-import trendingUpIcon from 'img/trendingUp.svg'
-import trendingDownIcon from 'img/trendingDown.svg'
-import { useDispatch } from "react-redux";
-import { pinTicker } from "redux/slices/tickerData";
+import trendingUpIcon from 'img/trendingUp.svg';
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { unPinTicker } from "redux/slices/appSlice";
 
-export default function PinnedTicker({ data }) {
+
+
+export default function PinnedTicker({ ticker }) {
   const dispatch = useDispatch();
   const tickerClick = () => { };
-  const unpinTicker = (ticker) => {
-    dispatch(pinTicker(ticker));
+  const handleClick = (ticker) => {
+    console.log(ticker)
+    dispatch(unPinTicker(ticker))
   };
+  // const { price } = useSelector(state => state.tickerData?.data[ticker][0])
 
   return (
-    <Link to={`${data.ticker}`}
-      className="pinnedTickers__item"
-      onClick={tickerClick}
-    >
-      <img className="trending" src={trendingUpIcon} alt="trending" />
-      <span className="name">{data.ticker}</span>
-      <span className="price">{data.price}$</span>
-      <div
-        className="item__delete"
-        onClick={() => unpinTicker(data.ticker)}
+    <>
+      <Link to={`${ticker}`}
+        className="pinnedTickers__item"
+        onClick={tickerClick}
       >
-        <img src={deleteIcon} alt='delete' />
-      </div>
-    </Link>
+        <img className="trending" src={trendingUpIcon} alt="trending" />
+        <span className="name">{ticker}</span>
+        {/* <span className="price">{price}$</span> */}
+        <div
+          className="item__delete"
+          onClick={() => {handleClick(ticker) }}
+        >
+          <img src={deleteIcon} alt='delete' />
+        </div>
+      </Link>
+    </>
   )
 }
