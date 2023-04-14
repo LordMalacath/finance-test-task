@@ -6,12 +6,11 @@ import { searchTicker } from 'redux/slices/tickerSlice';
 export default function Search() {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
-  const onSubmit = data => dispatch(searchTicker(data));
+  const onSubmit = data => dispatch(searchTicker(data.search));
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="search" placeholder="Search for tickers..." {...register("search", {})} />
-
+      <input type="search" placeholder="Search for tickers..." {...register("search")} />
       <button type="submit" >Search</button>
     </form>
   )

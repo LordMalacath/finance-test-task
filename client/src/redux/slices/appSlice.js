@@ -3,6 +3,7 @@ import _ from "lodash";
 
 const initialState = {
     pinnedTickers: [],
+    interval: '',
 };
 
 export const appSlice = createSlice({
@@ -14,13 +15,17 @@ export const appSlice = createSlice({
         },
         unPinTicker: (state, { payload }) => {
             state.pinnedTickers = _.pull(state.pinnedTickers, payload);
-        }
+        },
+        setInterval: (state, {payload}) => {
+            state.interval = payload;
+        },
     }
 });
 
 export const {
     pinTicker,
     unPinTicker,
+    setInterval,
 } = appSlice.actions;
 
 export default appSlice.reducer;

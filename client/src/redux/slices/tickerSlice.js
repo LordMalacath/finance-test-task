@@ -1,7 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import _ from 'lodash';
+import { setInterval } from "./appSlice";
+import { tickerApi } from "api";
 
 
+
+
+export const fetchInterval = createAsyncThunk(
+  'tickerData/fetchInterval',
+  (interval, { dispatch }) => {
+    dispatch(setInterval(interval));
+    dispatch(tickerApi.util.resetApiState())
+
+  }
+)
 
 
 const initialState = {
@@ -24,14 +36,13 @@ export const tickerDataSlice = createSlice({
       })
     },
     searchTicker: (state, { payload }) => {
-      state.filteredData = _.filter(state.data, function (element) {
-        const newestTicker = _.last(element);
-        if (_.includes(newestTicker.ticker, _.toUpper(payload))) {
-          return newestTicker
+      const tickersList = _.keys(state.data);
+      state.filteredData = _.filter(tickersList, function (element) {
+        if (_.includes(element, _.toUpper(payload))) {
+          return element
         }
         return
       })
-      console.log(state.filteredData)
     }
   }
 });

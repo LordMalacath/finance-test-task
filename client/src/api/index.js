@@ -3,30 +3,35 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setData } from 'redux/slices/tickerSlice';
 
 
+export const socket = io.connect('http://localhost:4000');
 
 export const tickerApi = createApi({
   reducerPath: 'tickerApi',
+  keepUnusedDataFor: 0,
   baseQuery: fetchBaseQuery({ baseUrl: '/' }),
   endpoints: (build) => ({
     getQuotes: build.query({
-      queryFn() {
+      queryFn(interval) {
         return { data: null }
       },
       async onCacheEntryAdded(
-        quotes,
-        { updateCachedData, cacheDataLoaded, dispatch }
+        interval,
+        { updateCachedData, cacheDataLoaded, cacheEntryRemoved, dispatch }
       ) {
         await cacheDataLoaded;
-        const socket = io.connect('http://localhost:4000');
-        socket.emit('start');
+        socket.connect()
+        socket.emit('start', interval);
         socket.on('ticker', function (response) {
           const res = Array.isArray(response) ? response : [response];
           updateCachedData((currentCachedData) => { currentCachedData = res })
           dispatch(setData(res));
         });
+        await cacheEntryRemoved;
+        socket.disconnect();
+        socket.off('ticker');
       }
-    })
+    }),
   })
 })
 
-export const { useGetQuotesQuery } = tickerApi;
+export const { useGetQuotesQuery, useGetQuotesIntervalQuery } = tickerApi;
