@@ -1,12 +1,13 @@
+import _ from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 import PinnedTicker from "./components/PinnedTicker/PinnedTicker";
-import "./Header.scss";
 import logo from "img/chart-646.svg"
-import { tickerApi } from "api";
+
 import { fetchInterval } from "redux/slices/tickerSlice";
-import { useEffect } from "react";
-import _ from "lodash";
+import "./Header.scss";
+
 
 
 export default function Header() {
@@ -23,9 +24,7 @@ export default function Header() {
     if (60000 <= value && value < 3600000) { return value / 60000 + "min" }
   }
 
-  useEffect(() => {
-    dispatch(tickerApi.endpoints.getQuotes.initiate(interval))
-  }, [interval]);
+
 
 
   return (

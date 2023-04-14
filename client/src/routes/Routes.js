@@ -3,6 +3,8 @@ import Layout from "./Layout";
 import Ticker from "pages/page.ticker/Ticker";
 import Main from "pages/page.main/Main";
 
+
+
 export const router = createBrowserRouter(
   [
     {
